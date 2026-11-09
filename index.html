@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <title>TOMORROW'S YOU — Official Indie Mobile Puzzle Game</title>
+  <meta name="description" content="Official website for TOMORROW'S YOU, a 2D temporal puzzle adventure for Android made with Godot Engine 4.7.2. Every failed attempt becomes your teammate." />
+  <meta name="keywords" content="Tomorrow's You, indie game, puzzle game, time manipulation, temporal echoes, Godot Engine, Android puzzle game, offline mobile game" />
+  <meta name="theme-color" content="#0B1020" />
+  <link rel="canonical" href="https://tomorrowsyou.example.com/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tomorrowsyou.example.com/" />
+  <meta property="og:title" content="TOMORROW'S YOU — Official Game Website" />
+  <meta property="og:description" content="Every failed attempt becomes your teammate. Coordinate your temporal Echoes to solve intricate research facility puzzles." />
+  <meta property="og:image" content="https://tomorrowsyou.example.com/assets/images/branding/icon_512x512.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TOMORROW'S YOU — Official Game Website" />
+  <meta name="twitter:description" content="Every failed attempt becomes your teammate. Coordinate your temporal Echoes to solve intricate research facility puzzles." />
+  <meta name="twitter:image" content="https://tomorrowsyou.example.com/assets/images/branding/icon_512x512.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="assets/images/branding/icon_192x192.png" />
+
+  <!-- Google Fonts Preconnect & Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+
+  <!-- Ambient Research Facility Background Atmosphere -->
+  <div class="facility-backdrop" aria-hidden="true">
+    <div class="facility-backdrop__gradient"></div>
+    <div class="facility-backdrop__grid"></div>
+    <canvas id="facilityCanvas" class="facility-backdrop__canvas"></canvas>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#hero" class="brand-link" aria-label="Tomorrow's You Home">
+        <div class="brand-logo">
+          <img src="assets/images/branding/icon.svg" alt="Tomorrow's You temporal icon" width="38" height="38" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-text__title">TOMORROW'S YOU</span>
+          <span class="brand-text__sub">TEMPORAL RESEARCH</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
+
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+          <li><a href="#difficulty" class="nav-link">Difficulty</a></li>
+          <li><a href="#gallery" class="nav-link">Screenshots</a></li>
+          <li><a href="#features" class="nav-link">Features</a></li>
+          <li><a href="#specs" class="nav-link">Info</a></li>
+          <li><a href="#updates" class="nav-link">Log</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#download" class="btn btn--primary nav-cta">Download</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="mainContent">
+
+    <!-- ======================================================================
+         SECTION 1: CINEMATIC HERO
+         ====================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content reveal">
+          <div class="hero-badge">
+            <span class="hero-badge__dot"></span>
+            <span class="hero-badge__text">Godot Engine 4.7.2 · Android Mobile</span>
+          </div>
+
+          <h1 class="hero-title">
+            TOMORROW'S YOU
+            <span class="hero-title__highlight">YOUR PAST IS YOUR ONLY WAY FORWARD.</span>
+          </h1>
+
+          <p class="hero-tagline">“Every failed attempt becomes your teammate.”</p>
+
+          <p class="hero-description">
+            Every move leaves a trace. Every failed attempt becomes another version of you. Master time, coordinate your temporal Echoes, and escape the facility before your timeline collapses.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#about" class="btn btn--primary">
+              <span>EXPLORE THE GAME</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#how-it-works" class="btn btn--secondary">
+              <span>HOW IT WORKS</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero-spec-strip">
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Genre</span>
+              <span class="hero-spec-value">2D Puzzle Adventure</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Platform</span>
+              <span class="hero-spec-value">Android (Portrait)</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Connectivity</span>
+              <span class="hero-spec-value">100% Offline-First</span>
+            </div>
+            <div class="hero-spec-item">
+              <span class="hero-spec-label">Price</span>
+              <span class="hero-spec-value">Free · Zero Ads</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal delay-2">
+          <!-- Concentric Temporal Rings SVG -->
+          <svg class="hero-visual__rings" viewBox="0 0 500 500" fill="none" aria-hidden="true">
+            <circle cx="250" cy="250" r="220" stroke="rgba(84, 230, 234, 0.12)" stroke-width="1.5" stroke-dasharray="8 8"></circle>
+            <circle cx="250" cy="250" r="170" stroke="rgba(167, 139, 250, 0.15)" stroke-width="2" stroke-dasharray="14 10"></circle>
+            <circle cx="250" cy="250" r="120" stroke="rgba(84, 230, 234, 0.2)" stroke-width="1.5"></circle>
+            <line x1="250" y1="20" x2="250" y2="480" stroke="rgba(84, 230, 234, 0.08)" stroke-width="1"></line>
+            <line x1="20" y1="250" x2="480" y2="250" stroke="rgba(167, 139, 250, 0.08)" stroke-width="1"></line>
+          </svg>
+
+          <!-- Device Mockup displaying genuine game capture -->
+          <div class="hero-device-wrapper floating-element">
+            <div class="hero-device-screen">
+              <img src="assets/images/screenshots/01_main_menu.png" alt="Tomorrow's You in-game title screen showing atmospheric facility aperture" width="720" height="699" />
+            </div>
+            <div class="hero-device-badge">
+              <span class="hero-badge__dot"></span>
+              <span class="hero-device-badge__text">IN-ENGINE CAPTURE · 720×1280</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 2: ABOUT THE GAME
+         ====================================================================== -->
+    <section class="section section--alt" id="about">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Facility Overview</span>
+          <h2>ONE PLAYER. MULTIPLE TIMELINES.</h2>
+          <p class="section-subtitle">
+            You are trapped inside an anomalous research complex where the laws of time have shattered. The only way out is to turn your previous attempts into synchronous teammates.
+          </p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-card-stack reveal">
+            <article class="facility-card" style="--card-accent: var(--color-player-cyan);">
+              <h3 class="facility-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                The Temporal Facility
+              </h3>
+              <p class="facility-card__text">
+                Explore an isolated research complex where an experiment involving chronal resonance has fractured reality. Every sector presents sealed chambers governed by temporal security protocols.
+              </p>
+            </article>
+
+            <article class="facility-card" style="--card-accent: var(--color-echo-violet);">
+              <h3 class="facility-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Holographic Echo Teammates
+              </h3>
+              <p class="facility-card__text">
+                Every attempt leaves behind an Echo: a recorded version of your previous actions. On your next run, your Echo replays those actions simultaneously alongside you, allowing you to solve puzzles that are physically impossible for one person.
+              </p>
+            </article>
+
+            <article class="facility-card" style="--card-accent: var(--color-energy-amber);">
+              <h3 class="facility-card__title">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                Strict Temporal Lifecycles
+              </h3>
+              <p class="facility-card__text">
+                Echoes do not remain permanently on their final positions. They exist strictly for the duration of their recorded sequence and expire when completed. Careful coordination and WAIT turns are vital to synchronize timelines.
+              </p>
+            </article>
+          </div>
+
+          <div class="about-visual reveal delay-2">
+            <div class="about-visual__frame">
+              <img src="assets/images/screenshots/07_gameplay_playing.png" alt="In-game screenshot of Tomorrow's You showing player coordinating with violet Echo on pressure plate" width="720" height="699" />
+              <div class="about-visual__overlay">
+                <div class="about-visual__status">RECORDING IN PROGRESS · 2 ACTIVE TIMELINES</div>
+                <div class="about-visual__caption">Direct control meets synchronized deterministic replay.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 3: HOW IT WORKS — INTERACTIVE MECHANIC EXPLORER
+         ====================================================================== -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Core Mechanic</span>
+          <h2>MASTER THE ECHO MECHANIC.</h2>
+          <p class="section-subtitle">
+            Temporal coordination requires foresight and discipline. Walk through the 5-phase execution cycle that powers every chamber solution.
+          </p>
+        </header>
+
+        <!-- Interactive SVG Chamber Simulator -->
+        <div class="mechanic-visualizer reveal" id="mechanicVisualizer">
+          <div class="mechanic-nav" role="tablist" aria-label="Echo mechanic phases">
+            <button class="mechanic-step-btn active" type="button" role="tab" aria-selected="true" data-step="0">
+              <span class="mechanic-step-btn__num">01</span> RECORD
+            </button>
+            <button class="mechanic-step-btn" type="button" role="tab" aria-selected="false" data-step="1">
+              <span class="mechanic-step-btn__num">02</span> CREATE ECHO
+            </button>
+            <button class="mechanic-step-btn" type="button" role="tab" aria-selected="false" data-step="2">
+              <span class="mechanic-step-btn__num">03</span> SYNCHRONIZE
+            </button>
+            <button class="mechanic-step-btn" type="button" role="tab" aria-selected="false" data-step="3">
+              <span class="mechanic-step-btn__num">04</span> CONTROL TIME
+            </button>
+            <button class="mechanic-step-btn" type="button" role="tab" aria-selected="false" data-step="4">
+              <span class="mechanic-step-btn__num">05</span> ESCAPE
+            </button>
+          </div>
+
+          <div class="mechanic-stage">
+            <div class="mechanic-canvas-box">
+              <svg id="mechanicBoardSvg" class="mechanic-board" viewBox="0 0 460 290" role="img" aria-label="Interactive visual diagram of the Echo puzzle mechanic"></svg>
+            </div>
+
+            <div class="mechanic-info">
+              <span class="mechanic-info__badge" id="mechanicBadge">PHASE 01 — RECORD</span>
+              <h3 class="mechanic-info__title" id="mechanicTitle">Record Your Path</h3>
+              <p class="mechanic-info__desc" id="mechanicDesc">
+                Navigate through the chamber. Every step, direction change, and turn is recorded into a temporal action buffer.
+              </p>
+              <div class="mechanic-info__rule" id="mechanicRule">
+                Key Mechanic: You can intentionally record WAIT actions to keep your character in place and extend the timeline.
+              </div>
+              <div class="mechanic-controls">
+                <button class="btn btn--primary" id="mechanicNextBtn" type="button">
+                  <span>NEXT STEP (2/5)</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5 Visual Summary Cards -->
+        <div class="steps-grid">
+          <article class="step-card reveal delay-1">
+            <span class="step-card__num">STEP 01</span>
+            <h3 class="step-card__title">RECORD</h3>
+            <p class="step-card__text">
+              Every successful action and direction move is recorded turn-by-turn during your attempt.
+            </p>
+          </article>
+
+          <article class="step-card reveal delay-2">
+            <span class="step-card__num">STEP 02</span>
+            <h3 class="step-card__title">CREATE AN ECHO</h3>
+            <p class="step-card__text">
+              Turn your previous attempt into another version of yourself and return to the chamber spawn point.
+            </p>
+          </article>
+
+          <article class="step-card reveal delay-3">
+            <span class="step-card__num">STEP 03</span>
+            <h3 class="step-card__title">SYNCHRONIZE</h3>
+            <p class="step-card__text">
+              Your Echoes replay simultaneously while you actively control the current player.
+            </p>
+          </article>
+
+          <article class="step-card reveal delay-4">
+            <span class="step-card__num">STEP 04</span>
+            <h3 class="step-card__title">CONTROL TIME</h3>
+            <p class="step-card__text">
+              Plan recording lengths and use WAIT actions to keep an Echo holding plates until you clear the door.
+            </p>
+          </article>
+
+          <article class="step-card reveal delay-5">
+            <span class="step-card__num">STEP 05</span>
+            <h3 class="step-card__title">ESCAPE</h3>
+            <p class="step-card__text">
+              Coordinate your timelines, satisfy all door logic conditions, and guide the real player to the exit.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 4: DIFFICULTY SYSTEM
+         ====================================================================== -->
+    <section class="section section--alt" id="difficulty">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Progression Architecture</span>
+          <h2>FIVE LEVELS OF TEMPORAL COMPLEXITY.</h2>
+          <p class="section-subtitle">
+            Progress through five distinct tiers of escalating difficulty. As temporal instability increases, puzzle chambers require deeper foresight, tighter timing, and sequential dependencies.
+          </p>
+        </header>
+
+        <div class="difficulty-grid">
+          <!-- Tier 1 -->
+          <article class="diff-card diff-card--1 reveal delay-1">
+            <span class="diff-card__tier">TIER 01</span>
+            <h3 class="diff-card__title">INITIATION</h3>
+            <span class="diff-card__badge">EASY</span>
+            <p class="diff-card__desc">
+              Your first encounter with the Echo system. Master grid traversal, directional movement, and single-Echo cooperation.
+            </p>
+            <div class="diff-card__specs">
+              <div class="diff-spec-item"><span>Echo Requirement</span><span>1 Teammate</span></div>
+              <div class="diff-spec-item"><span>Door Logic</span><span>Direct AND</span></div>
+              <div class="diff-spec-item"><span>Chamber Mood</span><span>Calm Cyan</span></div>
+            </div>
+          </article>
+
+          <!-- Tier 2 -->
+          <article class="diff-card diff-card--2 reveal delay-2">
+            <span class="diff-card__tier">TIER 02</span>
+            <h3 class="diff-card__title">SYNCHRONIZATION</h3>
+            <span class="diff-card__badge">NORMAL</span>
+            <p class="diff-card__desc">
+              Coordinate multiple versions of yourself. Introduce relay doors and precise WAIT turn management across parallel paths.
+            </p>
+            <div class="diff-card__specs">
+              <div class="diff-spec-item"><span>Echo Requirement</span><span>2 Teammates</span></div>
+              <div class="diff-spec-item"><span>Door Logic</span><span>Chained Gates</span></div>
+              <div class="diff-spec-item"><span>Chamber Mood</span><span>Emerald Resonance</span></div>
+            </div>
+          </article>
+
+          <!-- Tier 3 -->
+          <article class="diff-card diff-card--3 reveal delay-3">
+            <span class="diff-card__tier">TIER 03</span>
+            <h3 class="diff-card__title">CONVERGENCE</h3>
+            <span class="diff-card__badge">HARD</span>
+            <p class="diff-card__desc">
+              Plan routes and timing across interconnected chambers with staggered lifecycles and strict duration limits.
+            </p>
+            <div class="diff-card__specs">
+              <div class="diff-spec-item"><span>Echo Requirement</span><span>2–3 Teammates</span></div>
+              <div class="diff-spec-item"><span>Door Logic</span><span>Dual AND-Gates</span></div>
+              <div class="diff-spec-item"><span>Chamber Mood</span><span>Energy Amber</span></div>
+            </div>
+          </article>
+
+          <!-- Tier 4 -->
+          <article class="diff-card diff-card--4 reveal delay-4">
+            <span class="diff-card__tier">TIER 04</span>
+            <h3 class="diff-card__title">PARADOX</h3>
+            <span class="diff-card__badge">EXPERT</span>
+            <p class="diff-card__desc">
+              Master three Echoes and increasingly complex temporal dependencies. Multi-stage solutions with zero room for wasted turns.
+            </p>
+            <div class="diff-card__specs">
+              <div class="diff-spec-item"><span>Echo Requirement</span><span>3 Teammates</span></div>
+              <div class="diff-spec-item"><span>Door Logic</span><span>Multi-Gate Relay</span></div>
+              <div class="diff-spec-item"><span>Chamber Mood</span><span>Echo Violet</span></div>
+            </div>
+          </article>
+
+          <!-- Tier 5 -->
+          <article class="diff-card diff-card--5 reveal delay-5">
+            <span class="diff-card__tier">TIER 05</span>
+            <h3 class="diff-card__title">THE LAST TOMORROW</h3>
+            <span class="diff-card__badge">NIGHTMARE</span>
+            <p class="diff-card__desc">
+              Every recorded action matters. A 4-quadrant facility with strict Sequence Locks. One mistake unravels your entire plan.
+            </p>
+            <div class="diff-card__specs">
+              <div class="diff-spec-item"><span>Echo Requirement</span><span>3 Teammates Max</span></div>
+              <div class="diff-spec-item"><span>Door Logic</span><span>Ordered Sequence</span></div>
+              <div class="diff-spec-item"><span>Chamber Mood</span><span>Volatile Crimson</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 5: GAMEPLAY GALLERY
+         ====================================================================== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Facility Surveillance</span>
+          <h2>INSIDE THE FACILITY.</h2>
+          <p class="section-subtitle">
+            Authentic screen captures directly from the Godot Engine 4.7.2 Android build. Select any screen to inspect full tactical details.
+          </p>
+        </header>
+
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Populated by js/gallery.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal Component -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Screenshot lightbox modal">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close lightbox">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <button class="lightbox-btn lightbox-btn--prev" id="lightboxPrev" type="button" aria-label="Previous screenshot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="lightbox-image-box">
+          <img src="" alt="" class="lightbox-image" id="lightboxImage" />
+        </div>
+
+        <button class="lightbox-btn lightbox-btn--next" id="lightboxNext" type="button" aria-label="Next screenshot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="lightbox-caption-bar">
+          <div>
+            <div class="lightbox-title" id="lightboxTitle">Screenshot Title</div>
+            <p class="lightbox-counter" id="lightboxCaption">Description</p>
+          </div>
+          <span class="lightbox-counter" id="lightboxCounter">1 / 10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         SECTION 6: GAME FEATURES
+         ====================================================================== -->
+    <section class="section section--alt" id="features">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Core Mechanics</span>
+          <h2>TIME IS YOUR GREATEST RESOURCE.</h2>
+          <p class="section-subtitle">
+            Every feature of Tomorrow's You is designed around deterministic temporal mechanics, strategic puzzle design, and fair player progression.
+          </p>
+        </header>
+
+        <div class="features-grid">
+          <!-- Feature 1 -->
+          <article class="feature-card reveal delay-1">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="feature-title">Echo Recording</h3>
+            <p class="feature-desc">
+              Every successful action and movement path is recorded turn-by-turn. Convert completed runs into holographic teammates on your next attempt.
+            </p>
+          </article>
+
+          <!-- Feature 2 -->
+          <article class="feature-card reveal delay-2">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h3 class="feature-title">Synchronized Timelines</h3>
+            <p class="feature-desc">
+              Echoes replay in real time simultaneously with the player. Precise turn-by-turn synchronization turns individual moves into cooperative teamwork.
+            </p>
+          </article>
+
+          <!-- Feature 3 -->
+          <article class="feature-card reveal delay-3">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <h3 class="feature-title">Dynamic Pressure Plates</h3>
+            <p class="feature-desc">
+              Trigger facility mechanisms when depressed by either the real player or active Echoes. Keep plates weighted to maintain door power.
+            </p>
+          </article>
+
+          <!-- Feature 4 -->
+          <article class="feature-card reveal delay-4">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Logic-Based Doors</h3>
+            <p class="feature-desc">
+              Facility doors operate under strict boolean logic: single plate triggers, multi-plate AND-gates, and complex chronological Sequence Locks.
+            </p>
+          </article>
+
+          <!-- Feature 5 -->
+          <article class="feature-card reveal delay-1">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Temporal Planning & WAIT</h3>
+            <p class="feature-desc">
+              Intentionally record WAIT turns while standing on switches to hold doors open long enough for your future self to sprint through.
+            </p>
+          </article>
+
+          <!-- Feature 6 -->
+          <article class="feature-card reveal delay-2">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+            <h3 class="feature-title">Handcrafted Campaign</h3>
+            <p class="feature-desc">
+              10 meticulously designed chambers across 3 sectors. Zero random generation; every puzzle is mathematically verified and physically solvable.
+            </p>
+          </article>
+
+          <!-- Feature 7 (Confirmed in CHANGELOG & README) -->
+          <article class="feature-card reveal delay-3">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18h6"></path>
+                <path d="M10 22h4"></path>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Daily-Limited Hint System</h3>
+            <p class="feature-desc">
+              3 free hints per calendar day with 3-stage progressive disclosure (Observation, Strategy, Solution). Zero microtransactions, zero ads.
+            </p>
+          </article>
+
+          <!-- Feature 8 (Confirmed in README & code) -->
+          <article class="feature-card reveal delay-4">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title">Offline-First Architecture</h3>
+            <p class="feature-desc">
+              Play entirely without an internet connection. Zero data collection, zero third-party telemetry, and instant local saving via device storage.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 7: GAME INFORMATION PANEL
+         ====================================================================== -->
+    <section class="section" id="specs">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Specifications</span>
+          <h2>TECHNICAL SPECIFICATIONS.</h2>
+          <p class="section-subtitle">
+            Verified parameters and architectural details for the Tomorrow's You Android build.
+          </p>
+        </header>
+
+        <div class="info-card reveal">
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Title</span>
+              <span class="info-value">TOMORROW'S YOU</span>
+              <span class="info-sub">Official Trademark</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Genre</span>
+              <span class="info-value">2D Puzzle Adventure</span>
+              <span class="info-sub">Time Manipulation / Strategy</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Engine</span>
+              <span class="info-value">Godot Engine 4.7.2</span>
+              <span class="info-sub">Stable Mobile Renderer</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Target Platform</span>
+              <span class="info-value">Android (Mobile-First)</span>
+              <span class="info-sub">Portrait · Safe-Area Notch Insets</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Gameplay Mode</span>
+              <span class="info-value">Single-Player</span>
+              <span class="info-sub">100% Offline · Zero Telemetry</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Campaign Scope</span>
+              <span class="info-value">10 Verified Chambers</span>
+              <span class="info-sub">3 Distinct Sectors</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Automated QA</span>
+              <span class="info-value">129 Unit & Integration Tests</span>
+              <span class="info-sub">100% Passing Automated Harness</span>
+            </div>
+
+            <div class="info-item">
+              <span class="info-label">Monetization</span>
+              <span class="info-value">Free · Zero Ads</span>
+              <span class="info-sub">Open-Source MIT Software</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 8: LATEST UPDATES (DEVELOPMENT LOG)
+         ====================================================================== -->
+    <section class="section section--alt" id="updates">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Release Engineering</span>
+          <h2>DEVELOPMENT LOG.</h2>
+          <p class="section-subtitle">
+            Authentic development milestones and version release records tracked directly from source control.
+          </p>
+        </header>
+
+        <div class="updates-timeline" id="updatesTimeline">
+          <!-- Populated dynamically from js/site-config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 9: FAQ
+         ====================================================================== -->
+    <section class="section" id="faq">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Direct Answers</span>
+          <h2>FREQUENTLY ASKED QUESTIONS.</h2>
+          <p class="section-subtitle">
+            Clear, honest answers regarding game mechanics, mobile platforms, release plans, and offline architecture.
+          </p>
+        </header>
+
+        <div class="faq-list" id="faqList">
+          <!-- Populated dynamically from js/site-config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SECTION 10: DOWNLOAD
+         ====================================================================== -->
+    <section class="section section--alt" id="download">
+      <div class="container">
+        <div class="download-card reveal">
+          <div class="download-status-badge download-status-badge--in-dev" id="downloadStatusBadge">
+            <span class="hero-badge__dot"></span>
+            IN DEVELOPMENT · PUBLIC RELEASE PENDING
+          </div>
+
+          <h2 class="download-title">YOUR NEXT TIMELINE STARTS HERE.</h2>
+
+          <p class="download-message" id="downloadMessage">
+            Tomorrow's You is currently undergoing final quality assurance on Android. Direct APK download links and the Google Play release will be published here upon official release.
+          </p>
+
+          <div class="download-actions">
+            <!-- Configurable Download Button -->
+            <a href="#" class="btn btn--primary btn--disabled" id="downloadApkBtn" disabled aria-disabled="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>ANDROID APK — COMING SOON</span>
+            </a>
+
+            <!-- Google Play Store Button (Displayed when URL configured) -->
+            <a href="#" class="btn btn--secondary" id="downloadGooglePlayBtn" style="display: none;" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <span>GET IT ON GOOGLE PLAY</span>
+            </a>
+          </div>
+
+          <div class="download-specs-bar">
+            <span>Current Build: <strong id="downloadVersionText">v1.3.0 (Godot 4.7.2)</strong></span>
+            <span>Target Platform: <strong>Android 8.0+ (API 26+)</strong></span>
+            <span>Architecture: <strong>ARM64 / x86_64</strong></span>
+            <span>Price: <strong>100% Free · No Ads</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       SECTION 11: FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-link">
+            <div class="brand-logo">
+              <img src="assets/images/branding/icon.svg" alt="Tomorrow's You logo" width="38" height="38" />
+            </div>
+            <div class="brand-text">
+              <span class="brand-text__title">TOMORROW'S YOU</span>
+              <span class="brand-text__sub">TEMPORAL RESEARCH FACILITY</span>
+            </div>
+          </a>
+          <p class="footer-brand__tagline">“Every failed attempt becomes your teammate.”</p>
+          <p class="footer-brand__license">Built with Godot Engine 4.7.2 · MIT License</p>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Game Navigation</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#about" class="footer-nav-link">Facility Overview</a></li>
+            <li><a href="#how-it-works" class="footer-nav-link">Echo Mechanic</a></li>
+            <li><a href="#difficulty" class="footer-nav-link">Difficulty Tiers</a></li>
+            <li><a href="#gallery" class="footer-nav-link">Screenshot Gallery</a></li>
+            <li><a href="#features" class="footer-nav-link">Features</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Information</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#specs" class="footer-nav-link">Technical Specs</a></li>
+            <li><a href="#updates" class="footer-nav-link">Development Log</a></li>
+            <li><a href="#faq" class="footer-nav-link">FAQ</a></li>
+            <li><a href="#download" class="footer-nav-link">Android Download</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="footer-col__title">Legal & Credits</h4>
+          <ul class="footer-nav-list">
+            <li><a href="privacy.html" class="footer-nav-link">Privacy Policy</a></li>
+            <li><a href="credits.html" class="footer-nav-link">Credits & Provenance</a></li>
+            <li><a href="404.html" class="footer-nav-link">Temporal 404 Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 TOMORROW'S YOU. All rights reserved. Open-source under MIT License.</p>
+        <p>Zero tracking cookies · Zero user analytics · 100% offline-first game software</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" type="button" aria-label="Back to top of page">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- JavaScript Modules -->
+  <script src="js/site-config.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
