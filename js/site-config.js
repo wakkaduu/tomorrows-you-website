@@ -42,6 +42,118 @@ const SITE_CONFIG = {
     supportedAspectRatios: "Tested across 7 mobile ratios (360×640 to 1080×2400)"
   },
 
+  // The Incident Archive (Fictional Universe & Lore Records)
+  incidentArchive: [
+    {
+      id: "RECORD 001",
+      slug: "project-palimpsest",
+      title: "PROJECT PALIMPSEST",
+      classification: "RESEARCH ARCHIVE",
+      classificationClass: "badge-cyan",
+      accentColor: "#54E6EA",
+      statusMark: "[ RECORD INCOMPLETE ]",
+      refCode: "MRF-ARCH-001",
+      sector: "Sector 01 — Sub-level 3 / Core Lab",
+      integrity: "74% DATA INTEGRITY",
+      description: "An experimental system developed to record and reproduce sequences of human actions. Its original purpose was to allow a single operator to coordinate multiple tasks through temporary Echoes.",
+      dossierNotes: [
+        {
+          label: "PRIMARY DIRECTIVE",
+          content: "Achieve chronological action persistence through non-causal feedback loops. Initial tests confirmed a single human subject could execute multi-point environmental synchronization without auxiliary operators."
+        },
+        {
+          label: "ANOMALOUS OBSERVATION",
+          content: "Echo entities exhibit fixed lifecycles. They duplicate recorded trajectories faithfully but disintegrate upon timeline completion. <span class='archive-redacted'>[ RECORD INCOMPLETE ]</span> when sequence limits are exceeded."
+        },
+        {
+          label: "MERIDIAN LOG NOTE",
+          content: "System stabilized for test chambers. All operations logged under Palimpsest protocol standard."
+        }
+      ]
+    },
+    {
+      id: "RECORD 002",
+      slug: "the-fracture",
+      title: "THE FRACTURE",
+      classification: "RESTRICTED",
+      classificationClass: "badge-warning",
+      accentColor: "#FF647C",
+      statusMark: "[ ACCESS RESTRICTED ]",
+      refCode: "MRF-INC-0842",
+      sector: "Facility-Wide Containment",
+      integrity: "RESTRICTED RECOVERY",
+      description: "A catastrophic incident brought Meridian Research Facility into emergency containment. The official incident report remains incomplete.",
+      dossierNotes: [
+        {
+          label: "INCIDENT STATUS",
+          content: "Level-4 automated lockdown engaged. External comm-links severed. Bulkhead blast doors dropped across all sectors, isolating chambers behind logic-gated pressure relays."
+        },
+        {
+          label: "CONTAINMENT REPORT",
+          content: "Evacuation protocol failed to register personnel exit timestamps. Internal sensor readings indicate continuous temporal variance. Cause of initial resonance failure: <span class='archive-redacted'>[ ACCESS RESTRICTED ]</span>."
+        },
+        {
+          label: "LOG NOTE",
+          content: "Do not attempt manual bulkhead override without synchronized authorization keys."
+        }
+      ]
+    },
+    {
+      id: "RECORD 003",
+      slug: "morrow",
+      title: "MORROW",
+      classification: "FACILITY INTELLIGENCE",
+      classificationClass: "badge-amber",
+      accentColor: "#FFBE55",
+      statusMark: "[ DATA CORRUPTED ]",
+      refCode: "MRF-SYS-1049",
+      sector: "Autonomous AI Relay & Subroutines",
+      integrity: "ACTIVE TRANSMISSION",
+      description: "Meridian's automated intelligence continues to issue instructions despite the facility's abnormal operating conditions. Its latest transmission was addressed to Operator 07.",
+      dossierNotes: [
+        {
+          label: "SYSTEM TELEMETRY",
+          content: "MORROW heuristic core running on auxiliary power reserves. Daily hint assistance routines and puzzle validation matrices continue autonomous cycles at 00:00 local facility time."
+        },
+        {
+          label: "RECOVERED TRANSMISSION",
+          content: "\"Operator designation confirmed. Chrono-stabilizers active. Proceed through chamber grid. Remember: <span class='archive-redacted'>[ DATA CORRUPTED ]</span> is your only teammate.\""
+        },
+        {
+          label: "BEHAVIORAL DIRECTIVE",
+          content: "System directives remain loyal to chamber evacuation parameters despite zero confirmed external commands."
+        }
+      ]
+    },
+    {
+      id: "RECORD 004",
+      slug: "operator-07",
+      title: "OPERATOR 07",
+      classification: "IDENTITY RESTRICTED",
+      classificationClass: "badge-violet",
+      accentColor: "#A78BFA",
+      statusMark: "[ ACCESS RESTRICTED ]",
+      refCode: "MRF-OPR-0007",
+      sector: "Sector 01 / Chamber Spawn",
+      integrity: "SUBJECT IN TRANSIT",
+      description: "An operator designation recovered from the facility's authorization system. Several associated records remain inaccessible.",
+      dossierNotes: [
+        {
+          label: "AUTHORIZATION LOG",
+          content: "Designation Operator 07 verified at terminal boot. Subject demonstrates physical familiarity with grid movement controls, wait timing, and temporal echo deployment."
+        },
+        {
+          label: "DOSSIER RESTRICTIONS",
+          content: "Origin personnel file: <span class='archive-redacted'>[ ACCESS RESTRICTED ]</span>. Prior attempt logs: <span class='archive-redacted'>[ RECORD INCOMPLETE ]</span>. Objective: navigate 10 security chambers and reach the final exit portal."
+        },
+        {
+          label: "OBSERVER NOTE",
+          content: "Every previous attempt leaves a trace. The operator is not alone in the facility—their past self follows every command."
+        }
+      ]
+    }
+  ],
+
   // Authentic Development Log (Verified from CHANGELOG.md)
   updates: [
     {
@@ -135,3 +247,4 @@ const SITE_CONFIG = {
 if (typeof window !== "undefined") {
   window.SITE_CONFIG = SITE_CONFIG;
 }
+

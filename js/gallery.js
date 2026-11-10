@@ -280,3 +280,4 @@ class LightboxGallery {
 document.addEventListener("DOMContentLoaded", () => {
   window.galleryApp = new LightboxGallery();
 });
+

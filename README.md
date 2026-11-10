@@ -151,6 +151,27 @@ When the public Android APK is ready for distribution:
 }
 ```
 
+### Adding or Updating Incident Archive Records
+The fictional lore dossiers in **The Incident Archive** are managed in `SITE_CONFIG.incidentArchive` inside `js/site-config.js`:
+```javascript
+{
+  id: "RECORD 005",
+  slug: "new-record",
+  title: "RECORD TITLE",
+  classification: "RESTRICTED",
+  classificationClass: "badge-warning", // 'badge-cyan', 'badge-warning', 'badge-amber', 'badge-violet'
+  accentColor: "#FF647C",
+  statusMark: "[ ACCESS RESTRICTED ]",
+  refCode: "MRF-ARCH-005",
+  sector: "Sector 02 — Synchronization",
+  integrity: "PARTIAL DATA RECOVERY",
+  description: "Official spoiler-free description of the classified record.",
+  dossierNotes: [
+    { label: "FACILITY DIRECTIVE", content: "Details with <span class='archive-redacted'>[ REDACTED ]</span> markers." }
+  ]
+}
+```
+
 ---
 
 ## 7. Connecting to GitHub
@@ -213,3 +234,4 @@ Before public launch:
 
 Website content and source code are released under the [MIT License](LICENSE).
 Copyright &copy; 2026 TOMORROW'S YOU. All rights reserved.
+

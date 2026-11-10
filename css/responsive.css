@@ -175,6 +175,10 @@
     align-items: flex-start;
     gap: 0.35rem;
   }
+
+  .archive-doc__body {
+    padding: 1.25rem 1rem;
+  }
 }
 
 /* ==========================================================================
@@ -201,6 +205,24 @@
 
   .difficulty-grid {
     grid-template-columns: 1fr;
+  }
+
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-doc__meta-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .archive-doc__nav {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .archive-doc__nav .btn {
+    width: 100%;
   }
 
   .gallery-grid {
@@ -285,3 +307,4 @@
     max-width: 420px;
   }
 }
+

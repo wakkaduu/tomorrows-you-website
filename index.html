@@ -72,6 +72,7 @@
       <nav>
         <ul class="nav-menu" id="navMenu">
           <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#archive" class="nav-link">Archive</a></li>
           <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
           <li><a href="#difficulty" class="nav-link">Difficulty</a></li>
           <li><a href="#gallery" class="nav-link">Screenshots</a></li>
@@ -238,6 +239,108 @@
         </div>
       </div>
     </section>
+
+    <!-- ======================================================================
+         SECTION: THE INCIDENT ARCHIVE — CLASSIFIED FACILITY DOSSIER
+         ====================================================================== -->
+    <section class="section section--archive" id="archive">
+      <div class="container">
+        <header class="section-header reveal">
+          <span class="section-tag">Classified Dossier</span>
+          <h2>THE INCIDENT ARCHIVE</h2>
+          <p class="section-subtitle">“Some records were never meant to be recovered.”</p>
+          <div class="archive-intro-text">
+            <p>Something happened inside Meridian Research Facility.</p>
+            <p>The experiment was supposed to change how humanity understood time.</p>
+            <p>Now the records are corrupted, personnel are missing, and a system called MORROW continues to operate.</p>
+          </div>
+        </header>
+
+        <!-- 4 Recovered Classified Dossier Cards Grid -->
+        <div class="archive-grid" id="archiveGrid">
+          <!-- Populated dynamically from js/site-config.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Document Viewer Modal Component -->
+    <div class="archive-viewer" id="archiveViewer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="viewerTitle">
+      <div class="archive-viewer__backdrop" id="archiveViewerBackdrop"></div>
+      <div class="archive-viewer__container">
+        <div class="archive-doc">
+          <!-- Security / Header Ribbon -->
+          <div class="archive-doc__header">
+            <div class="archive-doc__classification-tag" id="viewerTag">RESEARCH ARCHIVE</div>
+            <div class="archive-doc__id" id="viewerId">RECORD 001</div>
+            <button class="archive-doc__close" id="archiveViewerClose" type="button" aria-label="Close document viewer">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Document Body with scanning line overlay & watermarks -->
+          <div class="archive-doc__body">
+            <div class="archive-doc__scanline" aria-hidden="true"></div>
+            <div class="archive-doc__watermark" id="viewerWatermark" aria-hidden="true">MERIDIAN CLASSIFIED</div>
+
+            <div class="archive-doc__meta-grid">
+              <div class="archive-doc__meta-item">
+                <span class="archive-doc__meta-label">Designation</span>
+                <span class="archive-doc__meta-value" id="viewerDesignation">PROJECT PALIMPSEST</span>
+              </div>
+              <div class="archive-doc__meta-item">
+                <span class="archive-doc__meta-label">Origin Sector</span>
+                <span class="archive-doc__meta-value" id="viewerSector">Sector 01 — Sub-level 3</span>
+              </div>
+              <div class="archive-doc__meta-item">
+                <span class="archive-doc__meta-label">Archival Status</span>
+                <span class="archive-doc__meta-value" id="viewerStatus">[ RECOVERED — 74% DATA INTEGRITY ]</span>
+              </div>
+              <div class="archive-doc__meta-item">
+                <span class="archive-doc__meta-label">Security Protocol</span>
+                <span class="archive-doc__meta-value" id="viewerProtocol">DECLASSIFIED FRAGMENT</span>
+              </div>
+            </div>
+
+            <h3 class="archive-doc__title" id="viewerTitle">PROJECT PALIMPSEST</h3>
+
+            <div class="archive-doc__desc-box">
+              <p class="archive-doc__desc" id="viewerDescription">
+                "An experimental system developed to record and reproduce sequences of human actions.
+                Its original purpose was to allow a single operator to coordinate multiple tasks through temporary Echoes."
+              </p>
+            </div>
+
+            <!-- Corrupted / Redacted Dossier Telemetry -->
+            <div class="archive-doc__dossier-notes" id="viewerNotes">
+              <!-- Dynamic details & redacted markings -->
+            </div>
+
+            <div class="archive-doc__footer-telemetry">
+              <span>FACILITY RECORDING ARCHIVE // REF: <strong id="viewerRef">MRF-REC-001</strong></span>
+              <span>INTEGRITY: <strong id="viewerIntegrity">PARTIAL</strong></span>
+            </div>
+          </div>
+
+          <!-- Navigation Bar (Sequential Browsing) -->
+          <div class="archive-doc__nav">
+            <button class="btn btn--secondary btn--sm" id="archiveViewerPrev" type="button" aria-label="Previous record">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+              <span>PREVIOUS RECORD</span>
+            </button>
+
+            <span class="archive-doc__counter" id="archiveViewerCounter">1 / 4</span>
+
+            <button class="btn btn--secondary btn--sm" id="archiveViewerNext" type="button" aria-label="Next record">
+              <span>NEXT RECORD</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ======================================================================
          SECTION 3: HOW IT WORKS — INTERACTIVE MECHANIC EXPLORER
@@ -796,6 +899,7 @@
           <h4 class="footer-col__title">Game Navigation</h4>
           <ul class="footer-nav-list">
             <li><a href="#about" class="footer-nav-link">Facility Overview</a></li>
+            <li><a href="#archive" class="footer-nav-link">Incident Archive</a></li>
             <li><a href="#how-it-works" class="footer-nav-link">Echo Mechanic</a></li>
             <li><a href="#difficulty" class="footer-nav-link">Difficulty Tiers</a></li>
             <li><a href="#gallery" class="footer-nav-link">Screenshot Gallery</a></li>

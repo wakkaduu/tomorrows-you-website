@@ -6,11 +6,13 @@
  * 3. Dynamic Development Log (from site-config.js)
  * 4. Accessible FAQ Accordion (from site-config.js)
  * 5. Dynamic Download Status Engine (from site-config.js)
- * 6. Scroll-Driven IntersectionObserver Reveal Effects
+ * 6. The Incident Archive Dossier Viewer (from site-config.js)
+ * 7. Scroll-Driven IntersectionObserver Reveal Effects
  */
 
 document.addEventListener("DOMContentLoaded", () => {
   initParticleCanvas();
+  initIncidentArchive();
   initMechanicVisualizer();
   initDevLog();
   initFAQ();
@@ -544,3 +546,186 @@ function initScrollReveals() {
 
   reveals.forEach((el) => observer.observe(el));
 }
+
+/* ==========================================================================
+   7. THE INCIDENT ARCHIVE — CLASSIFIED MERIDIAN DOSSIER VIEWER
+   ========================================================================== */
+function initIncidentArchive() {
+  const container = document.getElementById("archiveGrid");
+  const viewer = document.getElementById("archiveViewer");
+  const viewerBackdrop = document.getElementById("archiveViewerBackdrop");
+  const btnClose = document.getElementById("archiveViewerClose");
+  const btnPrev = document.getElementById("archiveViewerPrev");
+  const btnNext = document.getElementById("archiveViewerNext");
+
+  if (!container || !window.SITE_CONFIG || !window.SITE_CONFIG.incidentArchive) return;
+
+  const records = window.SITE_CONFIG.incidentArchive;
+  let currentIndex = 0;
+  let previousActiveElement = null;
+
+  // Render 4 Classified Archive Cards
+  container.innerHTML = records
+    .map(
+      (record, idx) => `
+      <article class="archive-card reveal delay-${idx + 1}" data-index="${idx}" tabindex="0" role="button" aria-label="Open dossier: ${record.id} — ${record.title}">
+        <div class="archive-card__scan-accent" aria-hidden="true"></div>
+        <div class="archive-card__header">
+          <span class="archive-card__id">${record.id}</span>
+          <span class="badge ${record.classificationClass}">${record.classification}</span>
+        </div>
+        <div class="archive-card__meta">
+          <span class="archive-card__status">${record.statusMark}</span>
+          <span class="archive-card__ref">${record.refCode}</span>
+        </div>
+        <h3 class="archive-card__title">${record.title}</h3>
+        <p class="archive-card__desc">${record.description}</p>
+        <div class="archive-card__action">
+          <span class="archive-card__btn-text">INSPECT RECORD</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </div>
+      </article>
+    `
+    )
+    .join("");
+
+  // Document Viewer Elements
+  const tagEl = document.getElementById("viewerTag");
+  const idEl = document.getElementById("viewerId");
+  const desigEl = document.getElementById("viewerDesignation");
+  const sectorEl = document.getElementById("viewerSector");
+  const statusEl = document.getElementById("viewerStatus");
+  const titleEl = document.getElementById("viewerTitle");
+  const descEl = document.getElementById("viewerDescription");
+  const notesEl = document.getElementById("viewerNotes");
+  const refEl = document.getElementById("viewerRef");
+  const integrityEl = document.getElementById("viewerIntegrity");
+  const counterEl = document.getElementById("archiveViewerCounter");
+
+  function updateViewerContent(idx) {
+    const rec = records[idx];
+    if (!rec) return;
+
+    if (tagEl) {
+      tagEl.textContent = rec.classification;
+      tagEl.className = `archive-doc__classification-tag ${rec.classificationClass}`;
+    }
+    if (idEl) idEl.textContent = rec.id;
+    if (desigEl) desigEl.textContent = rec.title;
+    if (sectorEl) sectorEl.textContent = rec.sector;
+    if (statusEl) statusEl.textContent = rec.statusMark;
+    if (titleEl) titleEl.textContent = `${rec.id} // ${rec.title}`;
+    if (descEl) descEl.textContent = `"${rec.description}"`;
+    if (refEl) refEl.textContent = rec.refCode;
+    if (integrityEl) integrityEl.textContent = rec.integrity;
+    if (counterEl) counterEl.textContent = `${idx + 1} / ${records.length}`;
+
+    if (notesEl && rec.dossierNotes) {
+      notesEl.innerHTML = rec.dossierNotes
+        .map(
+          (note) => `
+          <div class="archive-doc__note-block">
+            <h4 class="archive-doc__note-label">${note.label}</h4>
+            <p class="archive-doc__note-content">${note.content}</p>
+          </div>
+        `
+        )
+        .join("");
+    }
+  }
+
+  function openViewer(idx) {
+    previousActiveElement = document.activeElement;
+    currentIndex = idx;
+    updateViewerContent(currentIndex);
+    viewer?.classList.add("active");
+    viewer?.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    btnClose?.focus();
+  }
+
+  function closeViewer() {
+    viewer?.classList.remove("active");
+    viewer?.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (previousActiveElement) {
+      previousActiveElement.focus();
+    }
+  }
+
+  function nextRecord() {
+    currentIndex = (currentIndex + 1) % records.length;
+    updateViewerContent(currentIndex);
+  }
+
+  function prevRecord() {
+    currentIndex = (currentIndex - 1 + records.length) % records.length;
+    updateViewerContent(currentIndex);
+  }
+
+  // Open viewer upon card click or Enter/Space
+  container.addEventListener("click", (e) => {
+    const card = e.target.closest(".archive-card");
+    if (card) {
+      const idx = parseInt(card.dataset.index, 10);
+      openViewer(idx);
+    }
+  });
+
+  container.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const card = e.target.closest(".archive-card");
+      if (card) {
+        e.preventDefault();
+        const idx = parseInt(card.dataset.index, 10);
+        openViewer(idx);
+      }
+    }
+  });
+
+  // Modal Control Handlers
+  btnClose?.addEventListener("click", closeViewer);
+  viewerBackdrop?.addEventListener("click", closeViewer);
+
+  btnNext?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    nextRecord();
+  });
+
+  btnPrev?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    prevRecord();
+  });
+
+  // Keyboard navigation when viewer is active
+  document.addEventListener("keydown", (e) => {
+    if (!viewer?.classList.contains("active")) return;
+
+    if (e.key === "Escape") {
+      closeViewer();
+    } else if (e.key === "ArrowRight") {
+      nextRecord();
+    } else if (e.key === "ArrowLeft") {
+      prevRecord();
+    } else if (e.key === "Tab") {
+      // Focus trap within active viewer
+      const focusable = viewer.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const firstEl = focusable[0];
+      const lastEl = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === firstEl) {
+        e.preventDefault();
+        lastEl.focus();
+      } else if (!e.shiftKey && document.activeElement === lastEl) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+  });
+}
+
