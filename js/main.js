@@ -597,7 +597,9 @@ function initIncidentArchive() {
   const desigEl = document.getElementById("viewerDesignation");
   const sectorEl = document.getElementById("viewerSector");
   const statusEl = document.getElementById("viewerStatus");
+  const protocolEl = document.getElementById("viewerProtocol");
   const titleEl = document.getElementById("viewerTitle");
+  const authorEl = document.getElementById("viewerAuthor");
   const descEl = document.getElementById("viewerDescription");
   const notesEl = document.getElementById("viewerNotes");
   const refEl = document.getElementById("viewerRef");
@@ -616,7 +618,9 @@ function initIncidentArchive() {
     if (desigEl) desigEl.textContent = rec.title;
     if (sectorEl) sectorEl.textContent = rec.sector;
     if (statusEl) statusEl.textContent = rec.statusMark;
+    if (protocolEl) protocolEl.textContent = rec.securityProtocol || "DECLASSIFIED FRAGMENT";
     if (titleEl) titleEl.textContent = `${rec.id} // ${rec.title}`;
+    if (authorEl) authorEl.textContent = rec.author ? `Author: ${rec.author}` : "Author: [ MERIDIAN CLASSIFIED ]";
     if (descEl) descEl.textContent = `"${rec.description}"`;
     if (refEl) refEl.textContent = rec.refCode;
     if (integrityEl) integrityEl.textContent = rec.integrity;
@@ -640,17 +644,30 @@ function initIncidentArchive() {
     previousActiveElement = document.activeElement;
     currentIndex = idx;
     updateViewerContent(currentIndex);
-    viewer?.classList.add("active");
-    viewer?.setAttribute("aria-hidden", "false");
+    if (viewer) {
+      viewer.style.display = "flex";
+      void viewer.offsetHeight; // force reflow for smooth opacity transition
+      viewer.classList.add("active");
+      viewer.setAttribute("aria-hidden", "false");
+    }
     document.body.style.overflow = "hidden";
-    btnClose?.focus();
+    setTimeout(() => {
+      btnClose?.focus();
+    }, 50);
   }
 
   function closeViewer() {
-    viewer?.classList.remove("active");
-    viewer?.setAttribute("aria-hidden", "true");
+    if (viewer) {
+      viewer.classList.remove("active");
+      viewer.setAttribute("aria-hidden", "true");
+      setTimeout(() => {
+        if (!viewer.classList.contains("active")) {
+          viewer.style.display = "none";
+        }
+      }, 250);
+    }
     document.body.style.overflow = "";
-    if (previousActiveElement) {
+    if (previousActiveElement && typeof previousActiveElement.focus === "function") {
       previousActiveElement.focus();
     }
   }

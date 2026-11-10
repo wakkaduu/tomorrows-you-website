@@ -33,9 +33,10 @@
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css?v=1.4.1" />
+  <link rel="stylesheet" href="css/animations.css?v=1.4.1" />
+  <link rel="stylesheet" href="css/archive.css?v=1.4.1" />
+  <link rel="stylesheet" href="css/responsive.css?v=1.4.1" />
 </head>
 <body>
 
@@ -263,82 +264,94 @@
       </div>
     </section>
 
-    <!-- Document Viewer Modal Component -->
-    <div class="archive-viewer" id="archiveViewer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="viewerTitle">
+    <!-- Document Viewer Modal Component (Classified Meridian Record Dossier) -->
+    <div class="archive-viewer" id="archiveViewer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="viewerTitle" style="display: none;">
       <div class="archive-viewer__backdrop" id="archiveViewerBackdrop"></div>
       <div class="archive-viewer__container">
-        <div class="archive-doc">
-          <!-- Security / Header Ribbon -->
+        <article class="archive-doc">
+          <!-- TOP HEADER: Record ID, Classification Badge, and Upper-Right Close Button -->
           <div class="archive-doc__header">
-            <div class="archive-doc__classification-tag" id="viewerTag">RESEARCH ARCHIVE</div>
-            <div class="archive-doc__id" id="viewerId">RECORD 001</div>
+            <div class="archive-doc__header-left">
+              <span class="archive-doc__id" id="viewerId">RECORD 001</span>
+              <span class="archive-doc__classification-tag" id="viewerTag">RESEARCH ARCHIVE</span>
+            </div>
             <button class="archive-doc__close" id="archiveViewerClose" type="button" aria-label="Close document viewer">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
                 <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
           </div>
 
-          <!-- Document Body with scanning line overlay & watermarks -->
+          <!-- DOCUMENT BODY (Scrollable with Scanlines & Watermark) -->
           <div class="archive-doc__body">
             <div class="archive-doc__scanline" aria-hidden="true"></div>
             <div class="archive-doc__watermark" id="viewerWatermark" aria-hidden="true">MERIDIAN CLASSIFIED</div>
 
-            <div class="archive-doc__meta-grid">
-              <div class="archive-doc__meta-item">
-                <span class="archive-doc__meta-label">Designation</span>
-                <span class="archive-doc__meta-value" id="viewerDesignation">PROJECT PALIMPSEST</span>
+            <!-- DOCUMENT METADATA -->
+            <div class="archive-doc__meta-panel">
+              <div class="archive-doc__meta-facility">
+                <span class="archive-doc__meta-facility-title">MERIDIAN RESEARCH FACILITY</span>
+                <span class="archive-doc__meta-facility-sub">TEMPORAL ANOMALY CONTAINMENT ARCHIVE</span>
               </div>
-              <div class="archive-doc__meta-item">
-                <span class="archive-doc__meta-label">Origin Sector</span>
-                <span class="archive-doc__meta-value" id="viewerSector">Sector 01 — Sub-level 3</span>
-              </div>
-              <div class="archive-doc__meta-item">
-                <span class="archive-doc__meta-label">Archival Status</span>
-                <span class="archive-doc__meta-value" id="viewerStatus">[ RECOVERED — 74% DATA INTEGRITY ]</span>
-              </div>
-              <div class="archive-doc__meta-item">
-                <span class="archive-doc__meta-label">Security Protocol</span>
-                <span class="archive-doc__meta-value" id="viewerProtocol">DECLASSIFIED FRAGMENT</span>
+              <div class="archive-doc__meta-grid">
+                <div class="archive-doc__meta-item">
+                  <span class="archive-doc__meta-label">Record Designation</span>
+                  <span class="archive-doc__meta-value" id="viewerDesignation">PROJECT PALIMPSEST</span>
+                </div>
+                <div class="archive-doc__meta-item">
+                  <span class="archive-doc__meta-label">Origin Sector</span>
+                  <span class="archive-doc__meta-value" id="viewerSector">Sector 01 — Sub-level 3 / Core Lab</span>
+                </div>
+                <div class="archive-doc__meta-item">
+                  <span class="archive-doc__meta-label">Archival Status</span>
+                  <span class="archive-doc__meta-value" id="viewerStatus">[ RECORD INCOMPLETE ]</span>
+                </div>
+                <div class="archive-doc__meta-item">
+                  <span class="archive-doc__meta-label">Security Protocol</span>
+                  <span class="archive-doc__meta-value" id="viewerProtocol">DECLASSIFIED FRAGMENT // LEVEL 2</span>
+                </div>
               </div>
             </div>
 
-            <h3 class="archive-doc__title" id="viewerTitle">PROJECT PALIMPSEST</h3>
+            <!-- DOCUMENT CONTENT -->
+            <div class="archive-doc__content">
+              <div class="archive-doc__title-row">
+                <h3 class="archive-doc__title" id="viewerTitle">PROJECT PALIMPSEST</h3>
+                <span class="archive-doc__author" id="viewerAuthor">Author: Meridian Science Council // Palimpsest Team</span>
+              </div>
 
-            <div class="archive-doc__desc-box">
-              <p class="archive-doc__desc" id="viewerDescription">
-                "An experimental system developed to record and reproduce sequences of human actions.
-                Its original purpose was to allow a single operator to coordinate multiple tasks through temporary Echoes."
-              </p>
+              <div class="archive-doc__desc-box">
+                <p class="archive-doc__desc" id="viewerDescription">
+                  "An experimental system developed to record and reproduce sequences of human actions.
+                  Its original purpose was to allow a single operator to coordinate multiple tasks through temporary Echoes."
+                </p>
+              </div>
+
+              <!-- Corrupted / Redacted Dossier Telemetry Notes -->
+              <div class="archive-doc__dossier-notes" id="viewerNotes"></div>
             </div>
+          </div>
 
-            <!-- Corrupted / Redacted Dossier Telemetry -->
-            <div class="archive-doc__dossier-notes" id="viewerNotes">
-              <!-- Dynamic details & redacted markings -->
-            </div>
-
+          <!-- DOCUMENT FOOTER: Telemetry & Navigation Controls -->
+          <div class="archive-doc__footer">
             <div class="archive-doc__footer-telemetry">
-              <span>FACILITY RECORDING ARCHIVE // REF: <strong id="viewerRef">MRF-REC-001</strong></span>
-              <span>INTEGRITY: <strong id="viewerIntegrity">PARTIAL</strong></span>
+              <span>FACILITY REF: <strong id="viewerRef">MRF-REC-001</strong></span>
+              <span>INTEGRITY: <strong id="viewerIntegrity">74% DATA INTEGRITY</strong></span>
+            </div>
+            <div class="archive-doc__nav">
+              <button class="btn btn--secondary btn--sm" id="archiveViewerPrev" type="button" aria-label="Previous record">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                <span>PREVIOUS RECORD</span>
+              </button>
+              <span class="archive-doc__counter" id="archiveViewerCounter">1 / 4</span>
+              <button class="btn btn--secondary btn--sm" id="archiveViewerNext" type="button" aria-label="Next record">
+                <span>NEXT RECORD</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
             </div>
           </div>
-
-          <!-- Navigation Bar (Sequential Browsing) -->
-          <div class="archive-doc__nav">
-            <button class="btn btn--secondary btn--sm" id="archiveViewerPrev" type="button" aria-label="Previous record">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
-              <span>PREVIOUS RECORD</span>
-            </button>
-
-            <span class="archive-doc__counter" id="archiveViewerCounter">1 / 4</span>
-
-            <button class="btn btn--secondary btn--sm" id="archiveViewerNext" type="button" aria-label="Next record">
-              <span>NEXT RECORD</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
-        </div>
+        </article>
       </div>
     </div>
 
