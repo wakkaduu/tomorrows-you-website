@@ -4,88 +4,7 @@
  * mobile swipe gestures, image counter, and accessible focus management.
  */
 
-const GALLERY_ITEMS = [
-  {
-    id: "01",
-    src: "assets/images/screenshots/01_main_menu.png",
-    thumb: "assets/images/screenshots/01_main_menu.png",
-    title: "Main Terminal & Temporal Aperture",
-    tag: "Interface",
-    caption: "The main portal establishing the atmospheric research facility environment with dynamic GLSL temporal aperture effects."
-  },
-  {
-    id: "07",
-    src: "assets/images/screenshots/07_gameplay_playing.png",
-    thumb: "assets/images/screenshots/07_gameplay_playing.png",
-    title: "Active Temporal Coordination",
-    tag: "Core Gameplay",
-    caption: "Direct control of the player alongside a holographic Echo replaying previous movements to activate pressure plate mechanisms."
-  },
-  {
-    id: "09",
-    src: "assets/images/screenshots/09_gameplay_hint_panel.png",
-    thumb: "assets/images/screenshots/09_gameplay_hint_panel.png",
-    title: "3-Stage Progressive Hint Assistance",
-    tag: "System",
-    caption: "Daily-limited 3-stage hint disclosure system: Observation, Strategy, and verified deterministic Solution."
-  },
-  {
-    id: "03",
-    src: "assets/images/screenshots/03_difficulty_select_easy.png",
-    thumb: "assets/images/screenshots/03_difficulty_select_easy.png",
-    title: "Difficulty Tier 1: Initiation",
-    tag: "Progression",
-    caption: "The first encounter with temporal Echoes, featuring calm cyan lighting and single-teammate fundamentals."
-  },
-  {
-    id: "04",
-    src: "assets/images/screenshots/04_difficulty_select_nightmare.png",
-    thumb: "assets/images/screenshots/04_difficulty_select_nightmare.png",
-    title: "Difficulty Tier 5: The Last Tomorrow",
-    tag: "Nightmare Challenge",
-    caption: "The ultimate 4-quadrant facility test with crimson volatile atmosphere and strict Sequence Lock synchronization."
-  },
-  {
-    id: "05",
-    src: "assets/images/screenshots/05_level_select.png",
-    thumb: "assets/images/screenshots/05_level_select.png",
-    title: "Sector & Chamber Progression",
-    tag: "Level Select",
-    caption: "10 handcrafted campaign chambers across 3 distinct sectors, with turn counters and star efficiency ratings."
-  },
-  {
-    id: "10",
-    src: "assets/images/screenshots/10_gameplay_level_complete.png",
-    thumb: "assets/images/screenshots/10_gameplay_level_complete.png",
-    title: "Chamber Cleared Modal",
-    tag: "Victory",
-    caption: "Level completion summary displaying recorded step count, star achievements, and next chamber unlocked status."
-  },
-  {
-    id: "08",
-    src: "assets/images/screenshots/08_gameplay_paused.png",
-    thumb: "assets/images/screenshots/08_gameplay_paused.png",
-    title: "Tactical Pause Interface",
-    tag: "Controls",
-    caption: "In-game tactical pause modal with immediate attempt restart, audio adjustments, and level select access."
-  },
-  {
-    id: "06",
-    src: "assets/images/screenshots/06_settings.png",
-    thumb: "assets/images/screenshots/06_settings.png",
-    title: "Audio & Accessibility Controls",
-    tag: "Settings",
-    caption: "Tactile haptic vibration toggle, independent BGM/SFX sliders, and reduced-animations accessibility setting."
-  },
-  {
-    id: "02",
-    src: "assets/images/screenshots/02_credits.png",
-    thumb: "assets/images/screenshots/02_credits.png",
-    title: "In-Engine Production Credits",
-    tag: "Credits",
-    caption: "Authentic in-engine credits highlighting Godot Engine 4.7.2 architecture and offline procedural audio/visual generation."
-  }
-];
+const GALLERY_ITEMS = window.SITE_CONFIG?.gallery || [];
 
 class LightboxGallery {
   constructor() {
@@ -122,7 +41,7 @@ class LightboxGallery {
       .map(
         (item, index) => `
         <article class="gallery-card reveal" data-index="${index}" tabindex="0" role="button" aria-label="View screenshot: ${item.title}">
-          <img src="${item.thumb}" alt="${item.title} — ${item.caption}" loading="lazy" width="720" height="699" />
+          <img src="${item.thumb}" alt="${item.alt}" loading="lazy" width="${item.width}" height="${item.height}" />
           <div class="gallery-card__zoom" aria-hidden="true">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"></circle>
@@ -185,7 +104,15 @@ class LightboxGallery {
     document.addEventListener("keydown", (e) => {
       if (!this.isOpen) return;
 
-      if (e.key === "Escape") {
+      if (e.key === "Tab") {
+        const controls = [this.btnClose, this.btnPrev, this.btnNext].filter(Boolean);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      } else if (e.key === "Escape") {
         this.close();
       } else if (e.key === "ArrowLeft") {
         this.prev();
@@ -231,6 +158,7 @@ class LightboxGallery {
     this.currentIndex = index;
     this.isOpen = true;
     this.updateContent();
+    if (this.lightbox) this.lightbox.inert = false;
     this.lightbox?.classList.add("active");
     this.lightbox?.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
@@ -239,6 +167,7 @@ class LightboxGallery {
 
   close() {
     this.isOpen = false;
+    if (this.lightbox) this.lightbox.inert = true;
     this.lightbox?.classList.remove("active");
     this.lightbox?.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
@@ -263,7 +192,7 @@ class LightboxGallery {
 
     if (this.lightboxImage) {
       this.lightboxImage.src = item.src;
-      this.lightboxImage.alt = `${item.title}: ${item.caption}`;
+      this.lightboxImage.alt = item.alt;
     }
     if (this.lightboxTitle) {
       this.lightboxTitle.textContent = item.title;

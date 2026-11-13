@@ -6,7 +6,7 @@
   <title>Privacy Policy — TOMORROW'S YOU</title>
   <meta name="description" content="Privacy policy and data transparency statement for the TOMORROW'S YOU game and official website." />
   <meta name="theme-color" content="#0B1020" />
-  <link rel="canonical" href="https://tomorrowsyou.example.com/privacy.html" />
+  <link rel="canonical" href="https://wakkaduu.github.io/tomorrows-you-website/privacy.html" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="assets/images/branding/icon_192x192.png" />
@@ -16,9 +16,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261110-0c1d561" />
+  <link rel="stylesheet" href="css/animations.css?v=20261110-0c1d561" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261110-0c1d561" />
 </head>
 <body>
 
@@ -69,8 +69,7 @@
       <div class="container legal-content">
 
         <div class="notice-box">
-          <strong>Pre-Launch Notice for Maintainers:</strong>
-          This document reflects the actual static implementation of the website and the offline architecture of the Godot game. Before final publication on Google Play or public domains, please insert your official legal entity name and support email address in Section 7.
+          <strong>Public alpha:</strong> This page describes the game source inspected for the public Android alpha (v0.1.0-alpha.2) and this static website. The APK is hosted on GitHub Releases, which is governed by GitHub’s own privacy policy; this website does not host the file.
         </div>
 
         <article class="legal-section">
@@ -92,19 +91,19 @@
             <li><strong>Zero Telemetry:</strong> The game contains no third-party analytics SDKs (no Firebase Analytics, Google Analytics, Adjust, AppsFlyer, or Unity Ads).</li>
             <li><strong>Zero Advertising:</strong> There are no ad networks, interstitial ads, or tracking identifiers.</li>
             <li><strong>Local Save Storage:</strong> Level progress, star ratings, and daily hint allocations are saved locally in <code>user://save.cfg</code> on your physical device storage. This data never leaves your device.</li>
-            <li><strong>Android Permissions:</strong> The game requests only the standard hardware vibration permission (<code>android.permission.VIBRATE</code>) for optional tactile haptic feedback during movement and Echo creation. It requires no location, camera, microphone, contacts, or storage permissions.</li>
+            <li><strong>Android Permissions:</strong> The current game uses optional vibration for haptic feedback. No custom permissions are declared in the inspected export preset. Permissions in the final Android package must be checked against that package before release.</li>
           </ul>
         </article>
 
         <article class="legal-section">
           <h2>3. This Website and Web Server Logs</h2>
           <p>
-            This website is a static HTML/CSS/JavaScript presentation hosted on Netlify:
+            This website is a static HTML/CSS/JavaScript presentation configured for Netlify hosting:
           </p>
           <ul>
             <li><strong>No Tracking Cookies:</strong> This website sets zero advertising, session tracking, or marketing cookies.</li>
             <li><strong>No User Accounts or Forms:</strong> There are no account registration systems, comment forms, or newsletter subscriptions. We collect no names, emails, or passwords through this site.</li>
-            <li><strong>Server Access Logs:</strong> Like all web hosting platforms, our static host (Netlify) automatically processes standard HTTP request logs (IP addresses, User-Agent strings, requested URLs, and timestamps) solely for security monitoring, DDoS mitigation, and content delivery network routing.</li>
+            <li><strong>Server Access Logs:</strong> The hosting provider may process request information such as IP addresses, browser information, requested URLs, and timestamps to deliver and secure the website. This repository does not add an analytics service or control the provider’s log retention.</li>
           </ul>
         </article>
 
@@ -118,7 +117,7 @@
         <article class="legal-section">
           <h2>5. Children's Privacy</h2>
           <p>
-            TOMORROW'S YOU does not knowingly collect or solicit any personally identifiable information from children under the age of 13. Because the game is strictly offline with no account creation or communication features, children can safely enjoy the puzzle adventure without data transmission.
+            TOMORROW'S YOU does not knowingly collect or solicit any personally identifiable information from children under the age of 13. The inspected game has no online accounts, chat, or telemetry integration.
           </p>
         </article>
 
@@ -136,10 +135,10 @@
           </p>
           <ul>
             <li><strong>Project:</strong> TOMORROW'S YOU Official Game Project</li>
-            <li><strong>Source Code & Issues:</strong> Accessible via the project GitHub repository upon public release</li>
-            <li><strong>Direct Inquiries:</strong> <em>[Review Required: Specify official developer contact email prior to production launch]</em></li>
+            <li><strong>Source Code & Issues:</strong> <a data-developer-repository href="https://github.com/wakkaduu/Tomorrow-s-You" target="_blank" rel="noopener noreferrer">Official game repository</a></li>
+            <li><strong>Developer:</strong> <a data-developer-link href="https://github.com/wakkaduu" target="_blank" rel="noopener noreferrer">@wakkaduu</a></li>
           </ul>
-          <p><em>Effective Date: November 9, 2026 · Version 1.3.0</em></p>
+          <p><em>Last reviewed: November 10, 2026 · Development source review</em></p>
         </article>
 
       </div>
@@ -148,11 +147,13 @@
 
   <footer class="site-footer">
     <div class="container footer-bottom">
-      <p>&copy; 2026 TOMORROW'S YOU. All rights reserved. Open-source under MIT License.</p>
+      <p>&copy; 2026 TOMORROW'S YOU. All rights reserved. Website source under MIT License.</p>
       <p><a href="index.html">Back to Main Website</a> · <a href="credits.html">Credits & Provenance</a></p>
     </div>
   </footer>
 
+  <script src="js/site-config.js?v=20261110-0c1d561"></script>
+  <script src="js/developer.js?v=20261110-0c1d561"></script>
 </body>
 </html>
 

@@ -1,8 +1,7 @@
 # robots.txt for Tomorrow's You official website
-# Replace https://tomorrowsyou.example.com with the official production domain once assigned.
 
 User-agent: *
 Allow: /
 
-Sitemap: https://tomorrowsyou.example.com/sitemap.xml
+Sitemap: https://wakkaduu.github.io/tomorrows-you-website/sitemap.xml
 

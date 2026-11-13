@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Credits & Acknowledgments — TOMORROW'S YOU</title>
-  <meta name="description" content="Official development credits, engine attribution, and asset provenance for TOMORROW'S YOU." />
+  <meta name="description" content="Official credits for TOMORROW'S YOU by @wakkaduu, including engine attribution and asset provenance." />
   <meta name="theme-color" content="#0B1020" />
-  <link rel="canonical" href="https://tomorrowsyou.example.com/credits.html" />
+  <link rel="canonical" href="https://wakkaduu.github.io/tomorrows-you-website/credits.html" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="assets/images/branding/icon_192x192.png" />
@@ -15,9 +15,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261110-0c1d561" />
+  <link rel="stylesheet" href="css/animations.css?v=20261110-0c1d561" />
+  <link rel="stylesheet" href="css/responsive.css?v=20261110-0c1d561" />
 </head>
 <body>
 
@@ -65,6 +65,13 @@
     <section class="section">
       <div class="container">
         <div class="credits-grid">
+          <article class="credit-card">
+            <h2>GAME DEVELOPMENT</h2>
+            <h3 data-developer-handle>@wakkaduu</h3>
+            <span class="credit-role" data-developer-role>Game Developer / Creator</span>
+            <p class="credit-desc">Project: TOMORROW'S YOU</p>
+            <p>GitHub: <a data-developer-link href="https://github.com/wakkaduu" target="_blank" rel="noopener noreferrer">@wakkaduu</a></p>
+          </article>
 
           <article class="credit-card">
             <h3>Game Concept & Architecture</h3>
@@ -102,7 +109,7 @@
             <h3>Android Mobile Integration</h3>
             <span class="credit-role">Platform Engineering</span>
             <p class="credit-desc">
-              Portrait-locked architecture, cutout/notch safe-area margin handling, hardware back-button routing, high-touch-target 72&times;72px D-pad, and tactile haptic vibration engine.
+              Portrait-locked architecture, cutout/notch safe-area margin handling, hardware back-button routing, responsive directional controls, and tactile haptic vibration engine.
             </p>
           </article>
 
@@ -110,7 +117,7 @@
             <h3>Typography</h3>
             <span class="credit-role">Google Fonts & Typography</span>
             <p class="credit-desc">
-              Space Grotesk by Florian Karsten; Inter by Rasmus Andersson; IBM Plex Mono by Bold Monday. All licensed under the SIL Open Font License (OFL 1.1).
+              Website: Space Grotesk by Florian Karsten; Inter by Rasmus Andersson; IBM Plex Mono by Bold Monday. The game bundles Oxanium (The Oxanium Project Authors), Inter, and IBM Plex Mono. Font license files are documented in the game’s ASSET_LICENSES.md; these fonts use the SIL Open Font License (OFL 1.1).
             </p>
           </article>
 
@@ -118,7 +125,7 @@
             <h3>Automated QA & Testing</h3>
             <span class="credit-role">Continuous Verification</span>
             <p class="credit-desc">
-              129 automated unit, integration, and physical solvability tests passing in headless Godot, covering turn lookahead, daily hint allowances, and responsive mobile resolutions.
+              The game includes automated suites for temporal mechanics, campaign routes, daily hints, narrative systems, and responsive UI. Results are documented in the game’s implementation reports; no current universal pass count is asserted here.
             </p>
           </article>
 
@@ -126,7 +133,7 @@
             <h3>Web Performance & Hosting</h3>
             <span class="credit-role">Official Website Architecture</span>
             <p class="credit-desc">
-              Modern static web presentation built with semantic HTML5, CSS custom properties, vanilla ES6 JavaScript, original SVG graphics, and deployed via Netlify global edge CDN.
+              Modern static web presentation built with semantic HTML5, CSS custom properties, vanilla ES6 JavaScript, original SVG graphics, and Netlify-compatible static hosting.
             </p>
           </article>
 
@@ -135,7 +142,7 @@
         <div class="legal-section">
           <h2>Official License Notice</h2>
           <p>
-            TOMORROW'S YOU is released under the MIT License:
+            This website’s source is provided under its repository’s MIT License. Godot Engine is also MIT licensed. Consult the official game repository for game distribution and licensing terms:
           </p>
           <pre style="background: #080D1A; padding: 1.25rem; border-radius: 8px; border: 1px solid rgba(84, 230, 234, 0.2); color: #A7B0C4; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; overflow-x: auto; margin-top: 1rem;">
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -163,11 +170,14 @@ SOFTWARE.</pre>
 
   <footer class="site-footer">
     <div class="container footer-bottom">
-      <p>&copy; 2026 TOMORROW'S YOU. All rights reserved. Open-source under MIT License.</p>
+      <p>&copy; 2026 TOMORROW'S YOU. All rights reserved. Website source under MIT License.</p>
+      <p>Developed by <a data-developer-link href="https://github.com/wakkaduu" target="_blank" rel="noopener noreferrer">@wakkaduu</a></p>
       <p><a href="index.html">Back to Main Website</a> · <a href="privacy.html">Privacy Policy</a></p>
     </div>
   </footer>
 
+  <script src="js/site-config.js?v=20261110-0c1d561"></script>
+  <script src="js/developer.js?v=20261110-0c1d561"></script>
 </body>
 </html>
 

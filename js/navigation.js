@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-menu");
   const navBackdrop = document.querySelector(".nav-backdrop");
   const navLinks = document.querySelectorAll(".nav-link");
+  const menuLinks = navMenu?.querySelectorAll("a") || [];
   const backToTopBtn = document.querySelector(".back-to-top-btn");
 
   // --- Sticky Header on Scroll ---
@@ -41,13 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Mobile Drawer Toggle ---
   const openMenu = () => {
+    if (navMenu) navMenu.inert = false;
     navMenu?.classList.add("active");
     navBackdrop?.classList.add("active");
     navToggle?.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
+    menuLinks[0]?.focus();
   };
 
   const closeMenu = () => {
+    if (navMenu && navToggle) navMenu.inert = window.matchMedia("(max-width: 960px)").matches;
     navMenu?.classList.remove("active");
     navBackdrop?.classList.remove("active");
     navToggle?.setAttribute("aria-expanded", "false");
@@ -70,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Close mobile drawer when clicking a nav link
-  navLinks.forEach((link) => {
+  menuLinks.forEach((link) => {
     link.addEventListener("click", () => {
       closeMenu();
     });
@@ -83,6 +87,22 @@ document.addEventListener("DOMContentLoaded", () => {
       navToggle?.focus();
     }
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Tab" || !navMenu?.classList.contains("active")) return;
+    const first = navToggle;
+    const last = menuLinks[menuLinks.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault(); last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first?.focus();
+    }
+  });
+  window.matchMedia("(min-width: 961px)").addEventListener("change", event => {
+    closeMenu();
+  });
+
+  closeMenu();
 
   // --- Scrollspy: Highlight Active Nav Link ---
   const sections = document.querySelectorAll("section[id]");

@@ -34,3 +34,13 @@
   [headers.values]
     Cache-Control = "public, max-age=604800, must-revalidate"
 
+# Revalidate documents so new content-hashed screenshot URLs reach returning visitors.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

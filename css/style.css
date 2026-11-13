@@ -629,7 +629,7 @@ button:focus-visible {
   border-radius: 26px;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 720 / 699;
+  aspect-ratio: 9 / 16;
   background-color: #000;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -1086,7 +1086,7 @@ button:focus-visible {
   border: 1px solid var(--border-subtle);
   cursor: pointer;
   transition: all var(--transition-normal);
-  aspect-ratio: 720 / 699;
+  aspect-ratio: 9 / 16;
 }
 
 .gallery-card:hover {
@@ -1682,6 +1682,205 @@ button:focus-visible {
 
 .download-specs-bar span strong {
   color: var(--color-text-primary);
+}
+
+.download-specs-bar strong {
+  overflow-wrap: anywhere;
+}
+
+.download-icon {
+  display: block;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem auto;
+  filter: drop-shadow(0 0 12px rgba(84, 230, 234, 0.35));
+}
+
+.download-status-badge--alpha {
+  background: rgba(255, 190, 85, 0.12);
+  border: 1px solid rgba(255, 190, 85, 0.45);
+  color: var(--color-energy-amber);
+  box-shadow: 0 0 15px rgba(255, 190, 85, 0.2);
+}
+
+.download-version-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 640px;
+  margin: 0 auto 2rem auto;
+}
+
+.download-version-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.75rem 0.5rem;
+  background: rgba(11, 16, 32, 0.6);
+  border-radius: var(--radius-md);
+}
+
+.download-version-item__label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.download-version-item strong {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--color-player-cyan);
+}
+
+.btn--download {
+  min-height: 56px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-size: 1.05rem;
+}
+
+.download-secondary-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  margin: -0.75rem 0 2rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.download-text-link {
+  color: var(--color-player-cyan);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.25rem;
+}
+
+.download-text-link:hover,
+.download-text-link:focus-visible {
+  color: var(--color-text-primary);
+}
+
+.download-text-sep {
+  color: var(--color-text-muted);
+}
+
+.download-alpha-notice {
+  max-width: 720px;
+  margin: 0 auto 2.5rem auto;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--color-energy-amber);
+  background: rgba(255, 190, 85, 0.06);
+  text-align: left;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.download-alpha-notice p {
+  margin: 0 0 0.5rem 0;
+}
+
+.download-alpha-notice p:last-child {
+  margin-bottom: 0;
+}
+
+.download-alpha-notice__meta {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.download-panels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.download-panel,
+.help-improve {
+  background: rgba(11, 16, 32, 0.55);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.download-panel__title {
+  font-size: 1.05rem;
+  margin: 0 0 0.9rem 0;
+  color: var(--color-text-primary);
+}
+
+.download-panel__title--sub {
+  margin-top: 1.25rem;
+}
+
+.download-steps {
+  margin: 0 0 1rem 0;
+  padding-left: 1.4rem;
+}
+
+.download-steps li {
+  margin-bottom: 0.4rem;
+}
+
+.download-panel__note,
+.download-panel__warning {
+  margin: 0.75rem 0 0 0;
+  font-size: 0.9rem;
+}
+
+.download-panel__warning {
+  color: var(--color-energy-amber);
+}
+
+.download-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.download-list li {
+  margin-bottom: 0.35rem;
+}
+
+.help-improve {
+  text-align: left;
+  margin: 0 0 2rem 0;
+}
+
+.help-improve p,
+.help-improve ul {
+  margin: 0 0 0.75rem 0;
+}
+
+.help-improve__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem 1.25rem;
+  padding-left: 1.2rem;
+}
+
+.help-improve__privacy {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.btn--download-bug {
+  width: 100%;
+  min-height: 52px;
+  justify-content: center;
+}
+
+.download-sha {
+  font-size: 0.72rem;
 }
 
 /* ==========================================================================
@@ -2505,3 +2704,60 @@ button:focus-visible {
   padding: 0.55rem 1rem;
   font-size: 0.82rem;
 }
+
+/* Creator record uses the existing facility surfaces and semantic accents. */
+.developer-card {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(135deg, rgba(84, 230, 234, .04), rgba(167, 139, 250, .05)), var(--bg-card, #141c2e);
+  border: 1px solid rgba(84, 230, 234, .18);
+  border-radius: 16px;
+}
+.developer-emblem { width: 100%; height: auto; }
+.developer-card__body { min-width: 0; }
+.developer-card h3 { font-size: clamp(1.5rem, 4vw, 2.25rem); overflow-wrap: anywhere; }
+.developer-card p { margin: 1rem 0; color: var(--text-secondary, #a7b0c4); }
+.developer-card .developer-role { color: var(--color-echo-violet); }
+.developer-card .btn { margin-top: .75rem; white-space: normal; text-align: center; }
+@media (max-width: 600px) {
+  .developer-card { grid-template-columns: minmax(0, 1fr); gap: 1.25rem; }
+  .developer-emblem { width: 80px; }
+  .developer-card .btn { width: 100%; }
+}
+/* Secondary pages retain visible navigation when the homepage drawer is absent. */
+@media (max-width: 960px) {
+  .site-header:not(:has(.nav-toggle)) .nav-menu {
+    position: static; width: auto; height: auto; padding: 0;
+    border: 0; background: transparent; box-shadow: none;
+    flex-direction: row; flex-wrap: wrap; gap: .75rem;
+  }
+  .site-header:not(:has(.nav-toggle)) .nav-container { flex-wrap: wrap; gap: .75rem; }
+  .site-header:not(:has(.nav-toggle)) { position: relative; }
+}
+
+.legal-content { overflow-wrap: anywhere; }
+
+/* Keep portrait captures whole and captions outside the game interface. */
+.gallery-card__overlay { position: static; background: var(--color-bg-surface); opacity: 1; padding: 1rem; }
+.gallery-card { aspect-ratio: auto; }
+.gallery-card img { height: auto; aspect-ratio: 9 / 16; object-fit: contain; }
+.gallery-card:hover img { transform: none; }
+.about-visual { max-width: 420px; margin-inline: auto; }
+.about-visual__overlay { position: static; background: var(--color-bg-surface); }
+
+/* Reserve space for close/caption controls without cropping portrait captures. */
+.lightbox-content {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: calc(100vh - 8rem);
+  height: calc(100dvh - 8rem);
+  max-height: none;
+}
+.lightbox-image-box { height: 100%; min-height: 0; max-height: none; }
+.lightbox-image { width: auto; height: 100%; max-height: 100%; object-fit: contain; }
+.lightbox-caption-bar { max-height: 35vh; max-height: 35dvh; overflow-y: auto; }

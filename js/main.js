@@ -11,6 +11,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initGameContent();
   initParticleCanvas();
   initIncidentArchive();
   initMechanicVisualizer();
@@ -19,6 +20,47 @@ document.addEventListener("DOMContentLoaded", () => {
   initDownloadSection();
   initScrollReveals();
 });
+
+/** Populate existing components from the shared content manifest. */
+function initGameContent() {
+  const content = window.SITE_CONFIG;
+  if (!content) return;
+  document.querySelectorAll("[data-game-image]").forEach(image => {
+    const item = content.gallery.find(entry => entry.id === image.dataset.gameImage);
+    if (!item) return;
+    image.src = item.src;
+    image.alt = item.alt;
+    image.width = item.width;
+    image.height = item.height;
+  });
+  const synopsis = document.getElementById("storySynopsis");
+  if (synopsis) content.story.synopsis.forEach(text => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = text;
+    synopsis.append(paragraph);
+  });
+  document.querySelectorAll("[data-feature-title]").forEach(element => {
+    element.textContent = content.features[Number(element.dataset.featureTitle)].title;
+  });
+  document.querySelectorAll("[data-feature-description]").forEach(element => {
+    element.textContent = content.features[Number(element.dataset.featureDescription)].description;
+  });
+  const difficulty = document.getElementById("difficultyGrid");
+  if (difficulty) difficulty.innerHTML = content.difficulties.map(tier => `
+    <article class="diff-card diff-card--${tier.tier} reveal delay-${tier.tier}">
+      <span class="diff-card__tier">TIER ${String(tier.tier).padStart(2, "0")}</span>
+      <h3 class="diff-card__title">${tier.name}</h3>
+      <span class="diff-card__badge">${tier.label}</span>
+      <p class="diff-card__desc">${tier.description}</p>
+      <div class="diff-card__specs">
+        <div class="diff-spec-item"><span>Echo Coordination</span><span>${tier.coordination}</span></div>
+        <div class="diff-spec-item"><span>Door Logic</span><span>${tier.logic}</span></div>
+        <div class="diff-spec-item"><span>Chamber Mood</span><span>${tier.mood}</span></div>
+      </div>
+    </article>`).join("");
+  const progression = document.getElementById("progressionDescription");
+  if (progression) progression.textContent = content.progression.description;
+}
 
 /* ==========================================================================
    1. AMBIENT RESEARCH FACILITY PARTICLE CANVAS
@@ -124,8 +166,8 @@ function initMechanicVisualizer() {
       step: 1,
       badge: "PHASE 01 — RECORD",
       title: "Record Your Path",
-      desc: "Navigate through the chamber. Every step, direction change, and turn is recorded into a temporal action buffer.",
-      rule: "Key Mechanic: You can intentionally record WAIT actions to keep your character in place and extend the timeline.",
+      desc: "Navigate through the chamber. Each accepted move and WAIT action is recorded into your current timeline.",
+      rule: "Key Mechanic: Record WAIT actions to extend a timeline, within the puzzle’s shared WAIT allowance.",
       boardState: {
         playerPos: { x: 3, y: 1 }, // Standing on Plate
         echoVisible: false,
@@ -163,24 +205,24 @@ function initMechanicVisualizer() {
         echoPos: { x: 3, y: 1 }, // Holding plate
         plateActive: true,
         doorOpen: true,
-        turnText: "Turn 02 / 04 [Door A UNLOCKED — Echo Holding Plate]",
-        echoLifetime: 2
+        turnText: "Turn 03 / 04 [Door A UNLOCKED — Echo Holding Plate]",
+        echoLifetime: 1
       }
     },
     {
       step: 4,
       badge: "PHASE 04 — CONTROL TIME & EXPIRATION",
-      title: "Fixed Lifecycle & Expiration",
-      desc: "Echoes do NOT stay indefinitely. Once their recorded sequence finishes, the Echo dissolves into particles and the plate releases.",
-      rule: "CRITICAL: Echoes expire when finished. You must sprint through the door before the Echo's WAIT buffer runs out!",
+      title: "The Final Recorded Turn",
+      desc: "An Echo occupies its final recorded position for that turn. On the following turn it expires and stops activating its pressure plate.",
+      rule: "Timing Rule: Cross while the plate is active. Recorded WAIT actions extend that window within the puzzle’s shared allowance.",
       boardState: {
         playerPos: { x: 3, y: 3 }, // Safely through Door A
         echoVisible: true,
         echoPos: { x: 3, y: 1 },
         plateActive: true,
         doorOpen: true,
-        turnText: "Turn 03 / 04 [Echo Expiring in 1 Turn! Player Clears Door]",
-        echoLifetime: 1
+        turnText: "Turn 04 / 04 [Final Recorded Turn — Player Clears Door]",
+        echoLifetime: 0
       }
     },
     {
@@ -194,7 +236,7 @@ function initMechanicVisualizer() {
         echoVisible: false,
         plateActive: false,
         doorOpen: false,
-        turnText: "Turn 04 / 04 [CHAMBER ESCAPED — COMPLETE!]",
+        turnText: "Turn 05 / 04 [Echo Expired — Chamber Escaped]",
         echoLifetime: 0
       }
     }
@@ -367,10 +409,10 @@ function initDevLog() {
         <div class="update-entry-card">
           <div class="update-header">
             <div class="update-badge-group">
-              <span class="badge ${entry.badgeClass || 'badge-cyan'}">${entry.version}</span>
+              ${entry.version ? `<span class="badge ${entry.badgeClass || 'badge-cyan'}">${entry.version}</span>` : ""}
               <span class="badge ${entry.badgeClass || 'badge-cyan'}">${entry.category}</span>
             </div>
-            <time class="update-date" datetime="${entry.date}">${entry.date}</time>
+            ${entry.date ? `<time class="update-date" datetime="${entry.date}">${entry.date}</time>` : ""}
           </div>
           <h3 class="update-title">${entry.title}</h3>
           <p class="update-desc">${entry.summary}</p>
@@ -442,81 +484,51 @@ function initFAQ() {
 
 /* ==========================================================================
    5. DOWNLOAD SECTION DYNAMIC ENGINE (from site-config.js)
-   Accurately handles "in-development" vs "available"
+   Hydrates release fields from site-config.js (single source of truth)
    ========================================================================== */
 function initDownloadSection() {
+  const release = window.SITE_CONFIG && window.SITE_CONFIG.release;
+  if (!release) return;
+
   const badgeEl = document.getElementById("downloadStatusBadge");
   const messageEl = document.getElementById("downloadMessage");
-  const btnDownload = document.getElementById("downloadApkBtn");
-  const btnGooglePlay = document.getElementById("downloadGooglePlayBtn");
-  const versionEl = document.getElementById("downloadVersionText");
+  const isAvailable = release.status === "available" && Boolean(release.downloadUrl);
 
-  if (!window.SITE_CONFIG || !window.SITE_CONFIG.release) return;
+  // Fill every element bound to a release field, e.g. <strong data-release-text="sha256">.
+  document.querySelectorAll("[data-release-text]").forEach((el) => {
+    const value = release[el.dataset.releaseText];
+    if (value !== undefined && value !== null && value !== "") el.textContent = value;
+  });
 
-  const release = window.SITE_CONFIG.release;
+  // Bind every link to its configured URL. A missing URL hides the link instead of guessing one.
+  document.querySelectorAll("[data-release-link]").forEach((el) => {
+    const url = release[el.dataset.releaseLink];
+    if (url) {
+      el.setAttribute("href", url);
+    } else {
+      el.setAttribute("hidden", "");
+    }
+  });
 
-  if (versionEl) {
-    versionEl.textContent = release.version ? `v${release.version}` : "v1.3.0 (Godot 4.7.2)";
-  }
-
-  if (release.status === "in-development") {
-    // In-development state: disabled download button, coming soon notice
+  if (!isAvailable) {
+    // Not-yet-released state: keep the download control inert and say so plainly.
     if (badgeEl) {
       badgeEl.className = "download-status-badge download-status-badge--in-dev";
       badgeEl.innerHTML = `<span class="hero-badge__dot" style="background:#FFBE55;box-shadow:0 0 10px #FFBE55;"></span> IN DEVELOPMENT · PUBLIC RELEASE PENDING`;
     }
-
-    if (messageEl) {
-      messageEl.textContent = release.inDevelopmentMessage;
+    if (messageEl) messageEl.textContent = release.inDevelopmentMessage;
+    const btn = document.getElementById("downloadApkBtn");
+    if (btn) {
+      btn.removeAttribute("href");
+      btn.setAttribute("aria-disabled", "true");
+      btn.setAttribute("tabindex", "-1");
+      btn.classList.add("btn--disabled");
+      btn.querySelector("span").textContent = "ANDROID APK — COMING SOON";
     }
-
-    if (btnDownload) {
-      btnDownload.classList.add("btn--disabled");
-      btnDownload.setAttribute("disabled", "true");
-      btnDownload.setAttribute("aria-disabled", "true");
-      btnDownload.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span>ANDROID APK — COMING SOON</span>
-      `;
-    }
-
-    if (btnGooglePlay) {
-      btnGooglePlay.style.display = "none";
-    }
-  } else if (release.status === "available" && release.downloadUrl) {
-    // Available state: enabled download link
-    if (badgeEl) {
-      badgeEl.className = "download-status-badge download-status-badge--available";
-      badgeEl.innerHTML = `<span class="hero-badge__dot"></span> OFFICIAL ANDROID RELEASE AVAILABLE`;
-    }
-
-    if (messageEl) {
-      messageEl.textContent = release.availableNotice;
-    }
-
-    if (btnDownload) {
-      btnDownload.classList.remove("btn--disabled");
-      btnDownload.removeAttribute("disabled");
-      btnDownload.removeAttribute("aria-disabled");
-      btnDownload.setAttribute("href", release.downloadUrl);
-      btnDownload.innerHTML = `
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        <span>DOWNLOAD ANDROID APK (${release.apkFileSize})</span>
-      `;
-    }
-
-    if (btnGooglePlay && release.googlePlayUrl) {
-      btnGooglePlay.style.display = "inline-flex";
-      btnGooglePlay.setAttribute("href", release.googlePlayUrl);
-    }
+    return;
   }
+
+  if (messageEl && release.availableNotice) messageEl.textContent = release.availableNotice;
 }
 
 /* ==========================================================================
