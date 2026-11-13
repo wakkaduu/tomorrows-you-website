@@ -88,10 +88,10 @@
             The TOMORROW'S YOU Android game runs 100% locally on your mobile device:
           </p>
           <ul>
-            <li><strong>Zero Telemetry:</strong> The game contains no third-party analytics SDKs (no Firebase Analytics, Google Analytics, Adjust, AppsFlyer, or Unity Ads).</li>
-            <li><strong>Zero Advertising:</strong> There are no ad networks, interstitial ads, or tracking identifiers.</li>
-            <li><strong>Local Save Storage:</strong> Level progress, star ratings, and daily hint allocations are saved locally in <code>user://save.cfg</code> on your physical device storage. This data never leaves your device.</li>
-            <li><strong>Android Permissions:</strong> The inspected game source uses optional vibration for haptic feedback, and no custom permissions are declared in the inspected export preset. The public alpha APK’s final manifest permissions have not been independently reviewed for this policy.</li>
+            <li><strong>Telemetry:</strong> The APK manifest identifies no analytics SDK components. The inspected game source contains no third-party analytics SDK integrations (such as Firebase Analytics, Google Analytics, Adjust, AppsFlyer, or Unity Ads). Runtime network behavior has not been independently audited.</li>
+            <li><strong>Advertising:</strong> The APK manifest identifies no advertising components, and the inspected game source contains no ad-network integrations, interstitial ads, or tracking identifiers. Runtime behavior has not been independently audited.</li>
+            <li><strong>Local Save Storage:</strong> Level progress, star ratings, and daily hint allocations are saved locally in <code>user://save.cfg</code> on your physical device storage. The published Alpha 2 APK declares no Internet permission (see Android Permissions below), so the app cannot open network connections on its own.</li>
+            <li><strong>Android Permissions:</strong> The published Alpha 2 APK (v0.1.0-alpha.2, package com.tomorrowsyou.game, SHA-256 a39c2fd8…c4dafc9) was inspected with two Android manifest readers and declares no Android permissions. It does not request Internet access, camera, microphone, or special storage access. Optional vibration for haptic feedback is not verified as functioning in this release.</li>
           </ul>
         </article>
 
